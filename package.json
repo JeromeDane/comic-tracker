@@ -1,0 +1,9 @@
+{
+  "name": "comic-tracker",
+  "version": "0.0.1",
+  "description": "WIP/Toy project to track comic collection/read status using ComicVine APIs",
+  "main": "index.js",
+  "repository": "git@github.com:JeromeDane/comic-tracker.git",
+  "author": "Jerome Dane <jerome.dane@gmail.com>",
+  "license": "MIT"
+}
