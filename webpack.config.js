@@ -15,7 +15,15 @@ module.exports = {
   ],
   module: {
     rules: [
-      {test: /\.css$/, use: ['style-loader', 'css-loader']}
+      {test: /\.css$/, use: ['style-loader', 'css-loader']},
+      {test: /\.jsx?$/, use: {
+        loader: 'babel-loader',
+        options: {
+          sourceMaps: true,
+          presets: [['env', {'targets': {'browsers': ['ie >= 10']}}]],
+          plugins: [['transform-react-jsx', { 'pragma': 'h' }]]
+        }
+      }}
     ]
   },
   devServer: {
