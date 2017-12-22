@@ -16,7 +16,7 @@ Until further notice, this repo may be deleted at any time.
 
 ### Prerequisites
 
-* [Node](https://nodejs.org/en/) v9.x or later
+* [Node](https://nodejs.org/en/) v8.x or later
 * [Yarn](https://yarnpkg.com) v1.x or later ([installation](https://yarnpkg.com/en/docs/install))
 
 ### Dev Server
