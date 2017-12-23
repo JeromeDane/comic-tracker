@@ -21,7 +21,15 @@ Until further notice, this repo may be deleted at any time.
 
 ### Dev Server
 
-Run the development server using `yarn start`, which will open your browser tot http://localhost:3000
+Grab your [ComicVine API key](https://comicvine.gamespot.com/api/) and set it in
+your bash profile:
+
+```
+export COMICVINE_API_KEY=[your_api_key]
+```
+
+Run the development server using `yarn start`, which will open your browser to
+http://localhost:3000
 
 ## To Do
 
