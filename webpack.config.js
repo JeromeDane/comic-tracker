@@ -31,7 +31,11 @@ module.exports = {
   devServer: {
     port,
     open: true,
-    proxy: {'/api/*': {target: `http://localhost:${port + 1}/api/`}},
+    proxy: {
+      '/api/*': {target: `http://localhost:${port + 1}/api/`},
+      '/graphql/*': {target: `http://localhost:${port + 1}/graphql/`},
+      '/graphiql/*': {target: `http://localhost:${port + 1}/graphiql/`}
+    },
     stats: {
       hash: false,
       assets: false,

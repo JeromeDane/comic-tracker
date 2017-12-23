@@ -1,4 +1,7 @@
 const express = require('express'),
+      bodyParser = require('body-parser'),
+      {graphqlExpress, graphiqlExpress} = require('apollo-server-express'),
+      schema = require('./schema'),
       webpackConfig = require('../webpack.config.js'),
       comicVine = require('./comicvine.js'),
       {saveVolume} = require('./database.js')
@@ -15,5 +18,8 @@ app.get('/api/*', (req, res) => {
     res.send(data)
   })
 })
+
+app.use('/graphql', bodyParser.json(), graphqlExpress({schema}))
+app.use('/graphiql', graphiqlExpress({endpointURL: '/graphql'}))
 
 app.listen(port, () => console.log(`API server running on port ${port}`))
