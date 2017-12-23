@@ -4,7 +4,7 @@ const path = require('path'),
 const port = 3000
 
 module.exports = {
-  entry: path.join(__dirname, 'source/index.js'),
+  entry: path.join(__dirname, 'client/index.js'),
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js'
