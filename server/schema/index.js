@@ -1,11 +1,23 @@
 const {makeExecutableSchema} = require('graphql-tools'),
       resolvers = require('./resolvers')
 
-// Define your types here.
 const typeDefs = `
+
+  type Publisher {
+    id: ID!
+    name: String!
+  }
+
+  type Image {
+    thumbUrl: String
+  }
+
   type Volume {
     id: ID!
     name: String!
+    thumbUrl: String,
+    publisher: Publisher
+    image: Image
   }
 
   type Query {

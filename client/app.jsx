@@ -1,4 +1,7 @@
 import {h, Component} from 'preact'
+import createGraphQLClient from 'graphql-client'
+
+const client = createGraphQLClient({url: '/graphql'})
 
 export default class extends Component {
   render(unused, {series}) {
@@ -20,8 +23,13 @@ export default class extends Component {
     )
   }
   componentDidMount() {
-    fetch('/api').then(response => response.json().then(({results}) => {
-      this.setState({series: results})
-    }))
+    client.query(`{volumes {
+      id
+      name,
+      publisher {name},
+      image {thumbUrl}
+    }}`).then(body => {
+      this.setState({series: body.data.volumes})
+    })
   }
 }
