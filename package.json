@@ -27,6 +27,7 @@
     "webpack-dev-server": "2.9.7"
   },
   "dependencies": {
+    "camelcase-keys-recursive": "^0.8.2",
     "request-json": "^0.6.2"
   }
 }

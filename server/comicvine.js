@@ -1,4 +1,5 @@
-const client = require('request-json').createClient('https://comicvine.gamespot.com')
+const camelcase = require('camelcase-keys-recursive'),
+      client = require('request-json').createClient('https://comicvine.gamespot.com')
 
 module.exports = (key, resource, params = {}) => new Promise((resolve, reject) => {
   try {
@@ -9,7 +10,7 @@ module.exports = (key, resource, params = {}) => new Promise((resolve, reject) =
 
     client.get(url, (err, res, body) => {
       if(err) reject(err)
-      resolve(body)
+      resolve(camelcase(body))
     })
   } catch(e) {
     reject(e)
