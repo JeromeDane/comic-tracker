@@ -1,6 +1,8 @@
 const path = require('path'),
       HtmlWebpackPlugin = require('html-webpack-plugin')
 
+const port = 3000
+
 module.exports = {
   entry: path.join(__dirname, 'source/index.js'),
   output: {
@@ -27,8 +29,9 @@ module.exports = {
     ]
   },
   devServer: {
-    port: 3000,
+    port,
     open: true,
+    proxy: {'/api/*': {target: `http://localhost:${port+1}/api/`}},
     stats: {
       hash: false,
       assets: false,

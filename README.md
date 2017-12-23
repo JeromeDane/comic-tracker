@@ -21,10 +21,18 @@ Until further notice, this repo may be deleted at any time.
 
 ### Dev Server
 
-The dev server can be started using `yarn start [arguments]`. The following arguments are available:
+Run the development server using `yarn start`, which will open your browser tot http://localhost:3000
 
-| Argument           | Default     | Description                                                  |
-|--------------------|-------------|--------------------------------------------------------------|
-| `--port=[port]`    | 3000        | The port on which to run the development server              |
-| `--host=[host]`    | `localhost` | The host on which to run the development server              |
-| `--open=[boolean]` | `true`      | Whether or not to open the development server in the browser |
+## To Do
+
+* Component snapshot unit testing
+* Implement database
+* Read comics to local database from ComicVine
+* GraphQL api for client to read from database
+* User accounts
+* Allow users to mark comics as read
+* Allow users to mark comics as owned (and in what format)
+* Allow users to tag comics
+* Import/export comic read/owned/tags
+* Integration tests
+* Restore dev server `--host`, `--port`, and `--open` arguments
