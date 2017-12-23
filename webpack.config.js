@@ -31,7 +31,7 @@ module.exports = {
   devServer: {
     port,
     open: true,
-    proxy: {'/api/*': {target: `http://localhost:${port+1}/api/`}},
+    proxy: {'/api/*': {target: `http://localhost:${port + 1}/api/`}},
     stats: {
       hash: false,
       assets: false,

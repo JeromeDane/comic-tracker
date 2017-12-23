@@ -4,12 +4,12 @@ const express = require('express'),
       {saveVolume} = require('./database.js')
 
 const app = express(),
-      port = webpackConfig.devServer.port + 1
+      port = webpackConfig.devServer.port + 1,
       comicVineKey = process.env.COMICVINE_API_KEY
 
 const fetch = comicVine.bind(null, comicVineKey)
 
-app.get('/api/*', (req, res) =>  {
+app.get('/api/*', (req, res) => {
   fetch('volumes', {filter: 'name:Walking Dead'}).then(data => {
     data.results.forEach(saveVolume)
     res.send(data)

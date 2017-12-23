@@ -2,7 +2,6 @@ import {h, Component} from 'preact'
 
 export default class extends Component {
   render(unused, {series}) {
-    console.log(series);
     return (
       <div>
         <h1>Hello, World!</h1>

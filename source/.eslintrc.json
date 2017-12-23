@@ -1,0 +1,28 @@
+{
+  "env": {
+    "browser": true,
+    "node": false
+  },
+  "plugins": ["react"],
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaFeatures": {"jsx": true}
+  },
+  "rules": {
+    "no-unused-vars": ["error", { "varsIgnorePattern": "^h$" }],
+    "react/jsx-uses-vars": ["error"],
+    "react/jsx-indent": ["error", 2],
+    "react/jsx-closing-bracket-location": ["error", {
+      "nonEmpty": "after-props",
+      "selfClosing": "after-props"
+    }],
+    "react/jsx-handler-names": ["error", {
+      "eventHandlerPrefix": "handle",
+      "eventHandlerPropPrefix": "on"
+    }],
+    "react/jsx-tag-spacing": ["error"],
+    "react/jsx-wrap-multilines": ["error"],
+    "react/jsx-no-duplicate-props": ["error"],
+    "react/jsx-pascal-case": ["error"]
+  }
+}
