@@ -3,7 +3,7 @@ import {Component} from 'react'
 import {Route, Switch, BrowserRouter as Router} from 'react-router-dom'
 import style from './index.css'
 import Search from './search.jsx'
-import Series from './series.jsx'
+import SeriesDetails from './series-details.jsx'
 
 export default class extends Component {
   render() {
@@ -13,7 +13,7 @@ export default class extends Component {
         <Router>
           <Switch>
             <Route exact={true} path="/" component={Search} />
-            <Route exact={true} path="/series/:id" component={Series} />
+            <Route exact={true} path="/series/:id" component={SeriesDetails} />
           </Switch>
         </Router>
         <p>Powered by <a href="https://comicvine.gamespot.com" target="_blank">ComicVine</a></p>
