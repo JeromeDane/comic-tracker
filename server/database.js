@@ -2,7 +2,7 @@ const NoSQL = require('nosql'),
       path = require('path')
 
 const databases = {
-  volumes: NoSQL.load(path.join(__dirname, '../data/volumes.nosql'))
+  series: NoSQL.load(path.join(__dirname, '../data/series.nosql'))
 }
 
 const save = (db, doc) => {
@@ -11,11 +11,11 @@ const save = (db, doc) => {
 }
 const find = db => databases[db].find()
 
-const saveVolume = volume => save('volumes', volume)
+const saveSeries = series => save('series', series)
 
-const findVolumes = () => find('volumes')
+const findSeriess = () => find('series')
 
 module.exports = {
-  saveVolume,
-  findVolumes
+  saveSeries,
+  findSeriess
 }

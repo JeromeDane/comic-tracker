@@ -1,7 +1,7 @@
-const {findVolumes} = require('../database.js')
+const {findSeriess} = require('../database.js')
 
 module.exports = {
   Query: {
-    volumes: () => new Promise(resolve => findVolumes().callback((err, data) => resolve(data)))
+    series: () => new Promise(resolve => findSeriess().callback((err, data) => resolve(data)))
   }
 }

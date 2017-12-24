@@ -12,7 +12,7 @@ const typeDefs = `
     thumbUrl: String
   }
 
-  type Volume {
+  type Series {
     id: ID!
     name: String!
     thumbUrl: String,
@@ -21,7 +21,7 @@ const typeDefs = `
   }
 
   type Query {
-    volumes: [Volume!]!
+    series: [Series!]!
   }
 `
 
