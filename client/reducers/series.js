@@ -5,7 +5,7 @@ export default (state = Map(), {type, series}) => {
   if(type === SERIES_UPDATE) {
     series.forEach(s => {
       const id = s.get('id')
-      state = state.set(id, state.get(id) ? state.get('id').deepMerge(s) : s)
+      state = state.set(id, state.get(id) ? state.get(id).mergeDeep(s) : s)
     })
   }
   return state
