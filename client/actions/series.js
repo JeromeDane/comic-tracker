@@ -13,10 +13,10 @@ const _handleSeries = (series, dispatch, getState, nextAction) => {
   if(typeof nextAction === 'function') dispatch(nextAction(series))
 }
 
-export const fetchSeries = (fields, nextAction) =>
+export const fetchSeries = (query, fields, nextAction) =>
   (dispatch, getState) => {
     if(typeof fields !== 'string') throw new Error('"fields" is required as a string')
-    client.query(`{series {${fields}}}`)
+    client.query(`{series(query: "${query}") {${fields}}}`)
       .then(({data: {series}}) => _handleSeries(series, dispatch, getState, nextAction))
   }
 

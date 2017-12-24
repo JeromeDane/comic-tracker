@@ -24,7 +24,7 @@ const typeDefs = `
   }
 
   type Query {
-    series: [Series!]!
+    series(query: String): [Series!]!
     serie(id: ID!): Series
   }
 `
