@@ -16,7 +16,7 @@ export default (state = fromJS(defaultState), {type, query, series}) => {
   if(type === SERIES_HAVE_BEEN_UPDATED) {
     return state.set('series', series
       .map(s => s.set('score', score(s.get('name'), state.get('query'))))
-      .filter(s => s.get('score'))
+      .filter(s => s.get('score') > .4)
       .sort((a, b) =>
         a.get('score') < b.get('score') || (
           a.get('score') === b.get('score') &&
