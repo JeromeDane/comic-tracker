@@ -1,9 +1,9 @@
 const NoSQL = require('nosql'),
       path = require('path')
 
-const databases = {
-  series: NoSQL.load(path.join(__dirname, '../data/series.nosql'))
-}
+const series = NoSQL.load(path.join(__dirname, '../data/series.nosql'))
+
+const databases = {series}
 
 const save = (db, doc) => {
   doc.updated = Date.now()
@@ -17,5 +17,6 @@ const findSeries = () => find('series')
 
 module.exports = {
   saveSeries,
-  findSeries
+  findSeries,
+  series
 }

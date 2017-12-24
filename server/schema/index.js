@@ -10,6 +10,7 @@ const typeDefs = `
 
   type Image {
     thumbUrl: String
+    smallUrl: String
   }
 
   type Series {
@@ -24,6 +25,7 @@ const typeDefs = `
 
   type Query {
     series: [Series!]!
+    serie(id: ID!): Series
   }
 `
 
