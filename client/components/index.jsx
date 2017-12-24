@@ -1,6 +1,6 @@
 import {h} from 'preact'
 import {Component} from 'react'
-import style from './app.css'
+import style from './index.css'
 import Search from './search.jsx'
 
 export default class extends Component {

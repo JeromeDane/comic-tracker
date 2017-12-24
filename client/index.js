@@ -6,7 +6,7 @@ import thunk from 'redux-thunk'
 import {h, render} from 'preact'
 import {Provider} from 'react-redux'
 import reducers from './reducers'
-import App from './app.jsx'
+import App from './components/index.jsx'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 

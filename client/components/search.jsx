@@ -1,7 +1,7 @@
 import {h} from 'preact'
 import {Component} from 'react'
 import {connect} from 'react-redux'
-import {fetchSeries} from './actions/series'
+import {fetchSeries} from '../actions/series.js'
 
 class Search extends Component {
   render({series}) {
