@@ -15,6 +15,13 @@ module.exports = {
       title: 'Comic Tracker'
     })
   ],
+  resolve: {
+    alias: {
+      react: 'preact-compat',
+      'react-dom': 'preact-compat',
+      'create-react-class': 'preact-compat/lib/create-react-class'
+    }
+  },
   module: {
     rules: [
       {test: /\.css$/, use: ['style-loader', 'css-loader']},
