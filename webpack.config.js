@@ -24,7 +24,7 @@ module.exports = {
   },
   module: {
     rules: [
-      {test: /\.css$/, use: ['style-loader', 'css-loader']},
+      {test: /\.css$/, use: ['style-loader', 'css-loader?modules=true']},
       {test: /\.jsx?$/, use: {
         loader: 'babel-loader',
         options: {

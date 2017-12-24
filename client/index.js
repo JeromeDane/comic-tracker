@@ -1,3 +1,4 @@
+import 'reset-css/reset.css'
 import {Map} from 'immutable'
 import {createStore, applyMiddleware, compose} from 'redux'
 import {combineReducers} from 'redux-immutable'

@@ -1,14 +1,16 @@
-import {h, Component} from 'preact'
+import {h} from 'preact'
+import {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchSeries} from './actions/series'
+import style from './app.css'
 
 class App extends Component {
   render({series}) {
     return (
-      <div>
-        <h1>Hello, World!</h1>
+      <div className={style.app}>
+        <h1>Comic Tracker</h1>
         {series &&
-          <ul>
+          <ul style="width: 100%; float: left; clear: both;">
             {series.toArray().map(s => {
               const {name, countOfIssues, startYear, image: {thumbUrl}, publisher} = s.toJS()
               return (
@@ -21,6 +23,7 @@ class App extends Component {
             })}
           </ul>
         }
+        <p>Powered by <a href="https://comicvine.gamespot.com" target="_blank">ComicVine</a></p>
       </div>
     )
   }
