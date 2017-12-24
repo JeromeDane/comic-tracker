@@ -13,9 +13,9 @@ const find = db => databases[db].find()
 
 const saveSeries = series => save('series', series)
 
-const findSeriess = () => find('series')
+const findSeries = () => find('series')
 
 module.exports = {
   saveSeries,
-  findSeriess
+  findSeries
 }
