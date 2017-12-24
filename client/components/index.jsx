@@ -13,6 +13,7 @@ export default class extends Component {
         <Router>
           <Switch>
             <Route exact={true} path="/" component={Search} />
+            <Route exact={true} path="/search/:query" component={Search} />
             <Route exact={true} path="/series/:id" component={SeriesDetails} />
           </Switch>
         </Router>
