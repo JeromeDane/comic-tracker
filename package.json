@@ -32,6 +32,7 @@
     "camelcase-keys-recursive": "0.8.2",
     "css-loader": "0.28.7",
     "dashify": "1.0.0",
+    "debounce": "1.1.0",
     "deepmerge": "2.0.1",
     "graphql": "0.12.3",
     "graphql-client": "2.0.0",

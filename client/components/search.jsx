@@ -2,6 +2,7 @@ import {h} from 'preact'
 import {Component} from 'react'
 import {connect} from 'react-redux'
 import dashify from 'dashify'
+import debounce from 'debounce'
 import {Link} from 'react-router-dom'
 import search from '../actions/search.js'
 
@@ -14,7 +15,7 @@ class Search extends Component {
     return (
       <section>
         <p>Search:{' '}
-          <input onKeyup={this.handleInput} />
+          <input onKeyup={debounce(this.handleInput, 500)} />
           {loading && ' Loading ...'}
         </p>
         {series &&
@@ -36,8 +37,8 @@ class Search extends Component {
       </section>
     )
   }
-  handleInput(e) {
-    this.props.search(e.target.value)
+  handleInput({target: {value}}) {
+    if(value.length > 2) this.props.search(value)
   }
 }
 
