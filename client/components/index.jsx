@@ -3,6 +3,7 @@ import {Component} from 'react'
 import {Route, Switch, BrowserRouter as Router} from 'react-router-dom'
 import style from './index.css'
 import Search from './search.jsx'
+import Home from './home.jsx'
 import SeriesDetails from './series-details.jsx'
 
 export default class extends Component {
@@ -12,7 +13,8 @@ export default class extends Component {
         <h1>Comic Tracker</h1>
         <Router>
           <Switch>
-            <Route exact={true} path="/" component={Search} />
+            <Route exact={true} path="/" component={Home} />
+            <Route exact={true} path="/search/" component={Search} />
             <Route exact={true} path="/search/:query" component={Search} />
             <Route exact={true} path="/series/:id" component={SeriesDetails} />
           </Switch>
