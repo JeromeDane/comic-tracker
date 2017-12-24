@@ -1,15 +1,23 @@
 import {h} from 'preact'
 import {Component} from 'react'
 import {connect} from 'react-redux'
-import {fetchSeries} from '../actions/series.js'
+import search from '../actions/search.js'
 
 class Search extends Component {
-  render({series}) {
+  constructor(props) {
+    super(props)
+    this.handleInput = this.handleInput.bind(this)
+  }
+  render({loading, series}) {
     return (
       <section>
+        <p>Search:{' '}
+          <input onKeyup={this.handleInput} />
+          {loading && ' Loading ...'}
+        </p>
         {series &&
           <ul style="width: 100%; float: left; clear: both;">
-            {series.toArray().map(s => {
+            {series.map(s => {
               const {name, countOfIssues, startYear, image: {thumbUrl}, publisher} = s.toJS()
               return (
                 <li style="clear: left;">
@@ -24,12 +32,18 @@ class Search extends Component {
       </section>
     )
   }
-  componentWillMount() {
-    this.props.fetchSeries('id name publisher {name} image {thumbUrl}')
+  handleInput(e) {
+    this.props.search(e.target.value)
   }
 }
 
 export default connect(
-  state => ({series: state.get('series')}),
-  ({fetchSeries})
+  state => {
+    const search = state.get('search')
+    return {
+      loading: Boolean(search.get('loading')),
+      series: search.get('series')
+    }
+  },
+  ({search})
 )(Search)

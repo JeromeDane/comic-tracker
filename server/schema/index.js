@@ -18,6 +18,8 @@ const typeDefs = `
     thumbUrl: String,
     publisher: Publisher
     image: Image
+    startYear: Int
+    countOfIssues: Int
   }
 
   type Query {
