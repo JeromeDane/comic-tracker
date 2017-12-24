@@ -1,6 +1,8 @@
 import {h} from 'preact'
 import {Component} from 'react'
 import {connect} from 'react-redux'
+import dashify from 'dashify'
+import {Link} from 'react-router-dom'
 import search from '../actions/search.js'
 
 class Search extends Component {
@@ -18,12 +20,14 @@ class Search extends Component {
         {series &&
           <ul style="width: 100%; float: left; clear: both;">
             {series.map(s => {
-              const {name, countOfIssues, startYear, image: {thumbUrl}, publisher} = s.toJS()
+              const {id, name, countOfIssues, startYear, image: {thumbUrl}, publisher} = s.toJS()
               return (
                 <li style="clear: left;">
-                  <img src={thumbUrl} style="float: left; margin: 0 1em 1em 0;" />
-                  {name} ({startYear}) - {countOfIssues} issue{countOfIssues === 1 ? '' : 's'}
-                  <div>Published by {publisher.name}</div>
+                  <Link style="display: block;" to={`/series/${id}-${dashify(name)}-${dashify(publisher.name)}`}>
+                    <img src={thumbUrl} style="float: left; margin: 0 1em 1em 0;" />
+                    {name} ({startYear}) - {countOfIssues} issue{countOfIssues === 1 ? '' : 's'}
+                    <div>Published by {publisher.name}</div>
+                  </Link>
                 </li>
               )
             })}

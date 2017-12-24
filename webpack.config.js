@@ -7,7 +7,8 @@ module.exports = {
   entry: path.join(__dirname, 'client/index.js'),
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    publicPath: '/'
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -43,6 +44,7 @@ module.exports = {
       '/graphql/*': {target: `http://localhost:${port + 1}/graphql/`},
       '/graphiql/*': {target: `http://localhost:${port + 1}/graphiql/`}
     },
+    historyApiFallback: true,
     stats: {
       hash: false,
       assets: false,
