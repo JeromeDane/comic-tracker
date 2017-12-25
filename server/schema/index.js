@@ -9,6 +9,7 @@ const typeDefs = `
   }
 
   type Image {
+    iconUrl: String
     thumbUrl: String
     smallUrl: String
   }

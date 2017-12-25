@@ -11,7 +11,7 @@ export default query =>
     dispatch(
       fetchSeries(
         query,
-        'id name image {thumbUrl} publisher {id name} startYear countOfIssues',
+        'id name image {iconUrl} publisher {id name} startYear countOfIssues',
         () => ({type: SEARCH_REMOVE_LOADING})
       )
     )

@@ -2,6 +2,9 @@
   font-family: Arial, sans-serif;
   padding: 1em;
 }
+.app * {
+  box-sizing: border-box;
+}
 .app h1 {
   font-size: 2em;
 }

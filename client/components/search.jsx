@@ -5,6 +5,7 @@ import dashify from 'dashify'
 import debounce from 'debounce'
 import {Link} from 'react-router-dom'
 import search from '../actions/search.js'
+import style from './search.css'
 
 class Search extends Component {
   constructor(props) {
@@ -18,22 +19,23 @@ class Search extends Component {
           <input onKeyup={debounce(this.handleInput, 500)} ref={elem => this.input = elem} />
           {loading && ' Loading ...'}
         </p>
-        {series &&
-          <ul style="width: 100%; float: left; clear: both;">
-            {series.map(s => {
-              const {id, name, countOfIssues, startYear, image: {thumbUrl}, publisher} = s.toJS()
-              return (
-                <li style="clear: left;">
-                  <Link style="display: block;" to={`/series/${id}-${name ? dashify(name) : ''}-${publisher ? dashify(publisher.name) : ''}`}>
-                    <img src={thumbUrl} style="float: left; margin: 0 1em 1em 0;" />
-                    {name} ({startYear}) - {countOfIssues} issue{countOfIssues === 1 ? '' : 's'}
-                    {publisher && <div>Published by {publisher.name}</div>}
-                  </Link>
-                </li>
-              )
-            })}
-          </ul>
-        }
+        {series && <div className={style.seriesList}>
+          {series.map(s => {
+            const {id, name, countOfIssues, startYear, image, publisher} = s.toJS()
+            return (
+              <div>
+                <Link className={style.series} to={`/series/${id}-${name ? dashify(name) : ''}-${publisher ? dashify(publisher.name) : ''}`}>
+                  <img src={image && image.iconUrl} className={style.icon} />
+                  <div className={style.seriesDetails}>
+                    <div className={style.seriesName} title={name}>{name}</div>
+                    <div className={style.datePublisher}>{startYear} - {publisher && publisher.name}</div>
+                    {countOfIssues} issue{countOfIssues === 1 ? '' : 's'}
+                  </div>
+                </Link>
+              </div>
+            )
+          })}
+        </div>}
       </section>
     )
   }
