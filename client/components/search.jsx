@@ -45,8 +45,9 @@ class Search extends Component {
   componentWillMount() {
     const {query} = this.props.match.params
     if(query) {
-      this.setState({query})
-      this.props.search(query)
+      const decodedQuery = decodeURIComponent(query)
+      this.setState({query: decodedQuery})
+      this.props.search(decodedQuery)
     }
   }
 }
