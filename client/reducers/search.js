@@ -10,11 +10,11 @@ const defaultState = {
 }
 
 export default (state = fromJS(defaultState), {type, query, series}) => {
-  if(type === SEARCH_ADD_LOADING) return state.set('loading', state.get('loading') + 1)
-  if(type === SEARCH_REMOVE_LOADING) return state.set('loading', state.get('loading') - 1)
-  if(type === SEARCH_SET_QUERY) return state.set('query', query)
-  if(type === SERIES_HAVE_BEEN_UPDATED) {
-    return state.set('series', series
+  if(type === SEARCH_ADD_LOADING) state = state.set('loading', state.get('loading') + 1)
+  if(type === SEARCH_REMOVE_LOADING) state = state.set('loading', state.get('loading') - 1)
+  if(type === SEARCH_SET_QUERY) state = state.set('query', query)
+  if(type === SERIES_HAVE_BEEN_UPDATED || type === SEARCH_SET_QUERY) {
+    state = state.set('series', series
       .map(s => s.set('score', score(s.get('name'), state.get('query'))))
       .filter(s => s.get('score') > .4)
       .sort((a, b) =>

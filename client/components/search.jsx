@@ -24,10 +24,10 @@ class Search extends Component {
               const {id, name, countOfIssues, startYear, image: {thumbUrl}, publisher} = s.toJS()
               return (
                 <li style="clear: left;">
-                  <Link style="display: block;" to={`/series/${id}-${dashify(name)}-${dashify(publisher.name)}`}>
+                  <Link style="display: block;" to={`/series/${id}-${name ? dashify(name) : ''}-${publisher ? dashify(publisher.name) : ''}`}>
                     <img src={thumbUrl} style="float: left; margin: 0 1em 1em 0;" />
                     {name} ({startYear}) - {countOfIssues} issue{countOfIssues === 1 ? '' : 's'}
-                    <div>Published by {publisher.name}</div>
+                    {publisher && <div>Published by {publisher.name}</div>}
                   </Link>
                 </li>
               )
@@ -38,6 +38,7 @@ class Search extends Component {
     )
   }
   handleInput({target: {value}}) {
+    value = value.replace(/^\s+/, '').replace(/\s+$/, '')
     this.setState({query: value})
     history.replaceState(null, null, `/search/${encodeURIComponent(value)}`)
     if(value.length > 2) this.props.search(value)

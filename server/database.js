@@ -5,10 +5,11 @@ const series = NoSQL.load(path.join(__dirname, '../data/series.nosql'))
 
 const databases = {series}
 
-const save = (db, doc) => {
+const save = (db, doc) => new Promise(resolve => {
   doc.updated = Date.now()
-  databases[db].update(doc, doc).where('id', doc.id)
-}
+  return databases[db].update(doc, doc).where('id', doc.id).callback(resolve)
+})
+
 const find = db => databases[db].find()
 
 const saveSeries = series => save('series', series)

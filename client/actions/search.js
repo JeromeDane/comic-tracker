@@ -5,8 +5,8 @@ export const SEARCH_REMOVE_LOADING = 'SEARCH_REMOVE_LOADING'
 export const SEARCH_SET_QUERY = 'SEARCH_SET_QUERY'
 
 export default query =>
-  dispatch => {
-    dispatch({type: SEARCH_SET_QUERY, query})
+  (dispatch, getState) => {
+    dispatch({type: SEARCH_SET_QUERY, query, series: getState().get('series')})
     dispatch({type: SEARCH_ADD_LOADING})
     dispatch(
       fetchSeries(
