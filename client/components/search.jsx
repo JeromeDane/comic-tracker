@@ -11,11 +11,11 @@ class Search extends Component {
     super(props)
     this.handleInput = this.handleInput.bind(this)
   }
-  render({loading, series}, {query}) {
+  render({loading, series}) {
     return (
       <section>
         <p>Search:{' '}
-          <input onKeyup={debounce(this.handleInput, 500)} value={query} />
+          <input onKeyup={debounce(this.handleInput, 500)} ref={elem => this.input = elem}/>
           {loading && ' Loading ...'}
         </p>
         {series &&
@@ -39,16 +39,15 @@ class Search extends Component {
   }
   handleInput({target: {value}}) {
     value = value.replace(/^\s+/, '').replace(/\s+$/, '')
-    this.setState({query: value})
     history.replaceState(null, null, `/search/${encodeURIComponent(value)}`)
     if(value.length > 2) this.props.search(value)
   }
-  componentWillMount() {
+  componentDidMount() {
     const {query} = this.props.match.params
     if(query) {
       const decodedQuery = decodeURIComponent(query)
-      this.setState({query: decodedQuery})
       this.props.search(decodedQuery)
+      this.input.value = decodedQuery
     }
   }
 }

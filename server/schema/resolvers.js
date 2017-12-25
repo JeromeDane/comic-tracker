@@ -1,5 +1,5 @@
 const {series} = require('../database.js'),
-      score = require('string-score'),
+      {scoreAndFilter} = require('../../lib/score'),
       comicVine = require('../comicvine'),
       {saveSeries} = require('../database')
 
@@ -13,7 +13,7 @@ module.exports = {
   Query: {
     series: (_, {query}) => new Promise(resolve => {
       const fetchSeries = callback => {
-        series.find().filter(doc => query ? score(doc.name, query) > .3 : true)
+        series.find().filter(doc => query ? scoreAndFilter(doc.name, query) : true)
           .callback((err, data) => callback(data))
       }
       if(!queriesLastRun[query] || Date.now() - queriesLastRun[query] > 60 * 60 * 1000) {
