@@ -15,7 +15,7 @@ class Search extends Component {
     return (
       <section>
         <p>Search:{' '}
-          <input onKeyup={debounce(this.handleInput, 500)} ref={elem => this.input = elem}/>
+          <input onKeyup={debounce(this.handleInput, 500)} ref={elem => this.input = elem} />
           {loading && ' Loading ...'}
         </p>
         {series &&
