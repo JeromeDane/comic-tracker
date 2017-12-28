@@ -2,9 +2,10 @@ import {h} from 'preact'
 import {Component} from 'react'
 import {connect} from 'react-redux'
 import dashify from 'dashify'
+import moment from 'moment'
 import {Link} from 'react-router-dom'
 import {fetchSerie} from '../actions/series'
-import searchStyle from './search.css'
+import style from './series-details.css'
 import Crumbs from './crumbs.jsx'
 
 class Series extends Component {
@@ -23,18 +24,21 @@ class Series extends Component {
         <p>{startYear} - {publisher && `${publisher.name} -`} {countOfIssues} issues</p>
         <p dangerouslySetInnerHTML={{__html: description}} />
         <h3>Issues</h3>
-        {sortedIssues && <div className={searchStyle.list}>
+        {countOfIssues && (!issues || issues.length < countOfIssues) &&
+          <p>Loading ...</p>
+        }
+        {sortedIssues && <div className={style.list}>
           {sortedIssues.map(({id, name, issueNumber, image, coverDate}) => {
             return (
-              <div>
-                <Link className={searchStyle.item} to={`/issue/${id}-${dashify(seriesName)}-${issueNumber}-${name ? dashify(name) : ''}`}>
-                  <img src={image && image.iconUrl} className={searchStyle.icon} />
-                  <div className={searchStyle.itemDetails}>
-                    <div className={searchStyle.itemName} title={name}>#{issueNumber} - {name}</div>
-                    {coverDate}
+              <Link className={style.issue} to={`/issue/${id}-${dashify(seriesName)}-${issueNumber}-${name ? dashify(name) : ''}`}>
+                <img src={image && image.smallUrl} className={style.icon} />
+                <div className={style.itemDetails}>
+                  <div>#{issueNumber} - {name}</div>
+                  <div className={style.coverDate}>
+                    {moment(coverDate).format('MMMM Do YYYY')}
                   </div>
-                </Link>
-              </div>
+                </div>
+              </Link>
             )
           })}
         </div>}
@@ -45,7 +49,7 @@ class Series extends Component {
     this.props.fetchSerie(
       this.props.match.params.id.match(/^\d+/)[0],
       `id name description publisher {id name} startYear countOfIssues
-        issues {id name issueNumber coverDate image {iconUrl}}
+        issues {id name issueNumber coverDate image {smallUrl}}
       `
     )
   }

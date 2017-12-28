@@ -21,7 +21,7 @@ class Issue extends Component {
         {issue
           ? <div>
             <h2>#{issueNumber} - {name}</h2>
-            {image && image.thumbUrl && <img src={[image.thumbUrl]} />}
+            {image && image.smallUrl && <img src={[image.smallUrl]} />}
             <p dangerouslySetInnerHTML={{__html: description}} />
           </div>
           : <p>Loading ...</p>
@@ -45,7 +45,7 @@ export default connect(
     fetchIssue: () => {
       dispatch(fetchIssue(
         props.match.params.id.match(/^\d+/)[0],
-        'id name description issueNumber image {thumbUrl} series {id name}'
+        'id name description issueNumber image {smallUrl} series {id name}'
       ))
     }
   })

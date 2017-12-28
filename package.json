@@ -38,6 +38,7 @@
     "graphql-client": "2.0.0",
     "graphql-tools": "2.14.1",
     "immutable": "3.8.2",
+    "moment": "^2.20.1",
     "nosql": "6.1.0",
     "preact": "8.2.7",
     "preact-compat": "3.17.0",
