@@ -8,18 +8,18 @@ export const SERIES_HAVE_BEEN_UPDATED = 'SERIES_HAVE_BEEN_UPDATED'
 const client = createGraphQLClient({url: '/graphql'})
 
 const _handleSeries = (series, dispatch, getState, nextAction) => {
-  series = fromJS(series.map(s => {
-    if(s.description) {
-      s.description = s.description
+  series = fromJS(series.map(serie => {
+    if(serie.description) {
+      serie.description = serie.description
         .replace(/<a(.+?)href="\/([^"]+)"/g, '<a$1href="https://comicvine.gamespot.com/$2" target="_blank"')
     }
-    if(s.issues) {
-      s.issues = s.issues.map(issue => {
-        issue.volumeId = s.id
+    if(serie.issues) {
+      serie.issues = serie.issues.map(issue => {
+        issue.seriesId = serie.id
         return issue
       })
     }
-    return s
+    return serie
   }))
   dispatch({type: SERIES_UPDATE, series})
   dispatch({type: SERIES_HAVE_BEEN_UPDATED, series: getState().get('series')})

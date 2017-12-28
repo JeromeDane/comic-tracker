@@ -1,4 +1,4 @@
-// import createGraphQLClient from 'graphql-client'
+import createGraphQLClient from 'graphql-client'
 import {fromJS} from 'immutable'
 
 export const ISSUES_UPDATE = 'ISSUES_UPDATE'
@@ -10,8 +10,8 @@ export const updateIssues = issues =>
     dispatch({type: ISSUES_HAVE_BEEN_UPDATED, issues: getState().get('issues')})
   }
 
-// const client = createGraphQLClient({url: '/graphql'})
-//
+const client = createGraphQLClient({url: '/graphql'})
+
 // const _handleSeries = (issues, dispatch, getState, nextAction) => {
 //   issues = fromJS(issues.map(s => {
 //     if(s.description) {
@@ -31,11 +31,9 @@ export const updateIssues = issues =>
 //     client.query(`{issues(query: "${query}") {${fields}}}`)
 //       .then(({data: {issues}}) => _handleSeries(issues, dispatch, getState, nextAction))
 //   }
-//
-// export const fetchSerie = (id, fields, nextAction) =>
-//   (dispatch, getState) => {
-//     if(typeof fields !== 'string') throw new Error('"fields" is required as a string')
-//     console.log(`{serie(id: ${id}) {${fields}}}`);
-//     client.query(`{serie(id: ${id}) {${fields}}}`)
-//       .then(({data: {serie}}) => _handleSeries([serie], dispatch, getState, nextAction))
-//   }
+
+export const fetchIssue = (id, fields, nextAction) =>
+  (dispatch, getState) => {
+    client.query(`{issue(id: ${id}) {${fields}}}`)
+      .then(({data: {issue}}) => dispatch(updateIssues([issue])))
+  }

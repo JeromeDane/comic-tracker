@@ -45,9 +45,19 @@ module.exports = {
       series.one().filter(doc => doc.id == id)
         .callback((err, data) => resolve(data))
     }),
-    issues: (_, {series}) => getIssues(series)
+    issues: (_, {series}) => getIssues(series),
+    issue: (_, {id}) => new Promise(resolve => {
+      fetch('issues', {filter: `id:${id}`}) // note that ComicVine calls a comic series a "series"
+        .then(({results}) => {
+          results.map(issue => saveIssues(issue))
+          resolve(results[0])
+        })
+    })
   },
   Series: {
     issues: series => getIssues(series.id)
+  },
+  Issue: {
+    series: ({volume}) => volume
   }
 }

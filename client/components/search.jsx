@@ -1,11 +1,10 @@
 import {h} from 'preact'
 import {Component} from 'react'
 import {connect} from 'react-redux'
-import dashify from 'dashify'
 import debounce from 'debounce'
-import {Link} from 'react-router-dom'
 import search from '../actions/search.js'
 import style from './search.css'
+import SeriesLink from './links/series.jsx'
 
 class Search extends Component {
   constructor(props) {
@@ -21,17 +20,18 @@ class Search extends Component {
         </p>
         {series && <div className={style.list}>
           {series.map(s => {
-            const {id, name, countOfIssues, startYear, image, publisher} = s.toJS()
+            s = s.toJS()
+            const {name, countOfIssues, startYear, image, publisher} = s
             return (
               <div>
-                <Link className={style.item} to={`/series/${id}-${name ? dashify(name) : ''}-${publisher ? dashify(publisher.name) : ''}`}>
+                <SeriesLink series={s} className={style.item}>
                   <img src={image && image.iconUrl} className={style.icon} />
                   <div className={style.itemDetails}>
                     <div className={style.itemName} title={name}>{name}</div>
                     <div className={style.datePublisher}>{startYear} - {publisher && publisher.name}</div>
                     {countOfIssues} issue{countOfIssues === 1 ? '' : 's'}
                   </div>
-                </Link>
+                </SeriesLink>
               </div>
             )
           })}

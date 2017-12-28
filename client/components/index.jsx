@@ -5,6 +5,7 @@ import style from './index.css'
 import Search from './search.jsx'
 import Home from './home.jsx'
 import SeriesDetails from './series-details.jsx'
+import Issue from './issue.jsx'
 
 export default class extends Component {
   render() {
@@ -17,6 +18,7 @@ export default class extends Component {
             <Route exact={true} path="/search/" component={Search} />
             <Route exact={true} path="/search/:query" component={Search} />
             <Route exact={true} path="/series/:id" component={SeriesDetails} />
+            <Route exact={true} path="/issue/:id" component={Issue} />
           </Switch>
         </Router>
         <p>Powered by <a href="https://comicvine.gamespot.com" target="_blank">ComicVine</a></p>

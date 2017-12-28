@@ -28,14 +28,17 @@ const typeDefs = `
   type Issue {
     id: ID!
     name: String
+    description: String
     issueNumber: Int
     image: Image
     coverDate: String,
     volume: Int!
+    series: Series
   }
 
   type Query {
-    issues(series: Int): [Issue!]!
+    issues(series: Int!): [Issue!]!
+    issue(id: ID!): Issue!
     series(query: String): [Series!]!
     serie(id: ID!): Series
   }
