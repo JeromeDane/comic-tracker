@@ -1,5 +1,6 @@
 import createGraphQLClient from 'graphql-client'
-import {fromJS} from 'immutable'
+import {fromJS, List} from 'immutable'
+import {updateIssues} from './issues'
 
 export const SERIES_UPDATE = 'SERIES_UPDATE'
 export const SERIES_HAVE_BEEN_UPDATED = 'SERIES_HAVE_BEEN_UPDATED'
@@ -12,10 +13,21 @@ const _handleSeries = (series, dispatch, getState, nextAction) => {
       s.description = s.description
         .replace(/<a(.+?)href="\/([^"]+)"/g, '<a$1href="https://comicvine.gamespot.com/$2" target="_blank"')
     }
+    if(s.issues) {
+      s.issues = s.issues.map(issue => {
+        issue.volumeId = s.id
+        return issue
+      })
+    }
     return s
   }))
   dispatch({type: SERIES_UPDATE, series})
   dispatch({type: SERIES_HAVE_BEEN_UPDATED, series: getState().get('series')})
+  const issues = series.reduce((acc, serie) => {
+    if(serie.get('issues')) return acc.concat(serie.get('issues'))
+    return acc
+  }, List())
+  if(issues.size) dispatch(updateIssues(issues))
   if(typeof nextAction === 'function') dispatch(nextAction(series))
 }
 

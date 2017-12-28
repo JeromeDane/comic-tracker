@@ -30,7 +30,8 @@ const typeDefs = `
     name: String
     issueNumber: Int
     image: Image
-    coverDate: String
+    coverDate: String,
+    volume: Int!
   }
 
   type Query {
