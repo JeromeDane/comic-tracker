@@ -3,6 +3,7 @@ const NoSQL = require('nosql'),
 
 const series = NoSQL.load(path.join(__dirname, '../data/series.nosql')),
       issues = NoSQL.load(path.join(__dirname, '../data/issues.nosql')),
+      users = NoSQL.load(path.join(__dirname, '../data/users.nosql')),
       databases = {series, issues}
 
 const save = (db, doc) => new Promise(resolve => {
@@ -11,11 +12,16 @@ const save = (db, doc) => new Promise(resolve => {
 })
 
 const saveSeries = series => save('series', series),
-      saveIssues = issues => save('issues', issues)
+      saveIssue = issues => save('issues', issues),
+      saveUser = user => new Promise(resolve => {
+        users.update(user, user).where('googleId', user.googleId).callback(resolve)
+      })
 
 module.exports = {
   series,
   issues,
+  users,
   saveSeries,
-  saveIssues
+  saveIssue,
+  saveUser
 }

@@ -1,5 +1,5 @@
 import {h} from 'preact'
-import {Component} from 'react'
+import {Component} from 'react' // eslint-disable-line
 import {connect} from 'react-redux'
 import debounce from 'debounce'
 import search from '../actions/search.js'

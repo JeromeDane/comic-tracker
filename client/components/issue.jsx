@@ -1,10 +1,10 @@
 import {h} from 'preact'
-import {Component} from 'react'
+import {Component} from 'react' // eslint-disable-line
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
+import {fetchIssue} from '../actions/issues'
 import Crumbs from './crumbs.jsx'
 import SeriesLink from './links/series.jsx'
-import {fetchIssue} from '../actions/issues'
 
 class Issue extends Component {
   render({issue}) {

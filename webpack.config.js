@@ -40,6 +40,7 @@ module.exports = {
     port,
     open: true,
     proxy: {
+      '/api/session': {target: `http://localhost:${port + 1}/`},
       '/api/*': {target: `http://localhost:${port + 1}/api/`},
       '/graphql/*': {target: `http://localhost:${port + 1}/graphql/`},
       '/graphiql/*': {target: `http://localhost:${port + 1}/graphiql/`}

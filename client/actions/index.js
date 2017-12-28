@@ -37,18 +37,12 @@ app.get('/api/session', function(req, res) {
     .catch(() => res.send('{}'))
 })
 app.post('/api/session', function(req, res) {
-  if(!req.body.googleToken) {
-    delete req.session.user
-    res.send('{}')
-  }
-  else {
-    isGoogleAuthorized(req.body.googleToken, req.body.googleId).then(() => {
-      saveUser(req.body).then(() => {
-        req.session.user = req.body
-        res.send(req.body)
-      })
+  isGoogleAuthorized(req.body.googleToken, req.body.googleId).then(() => {
+    saveUser(req.body).then(() => {
+      req.session.user = req.body
+      res.send(req.body)
     })
-  }
+  })
 })
 
 app.listen(port, () => console.log(`API server running on port ${port}`))

@@ -1,5 +1,5 @@
 import {h} from 'preact'
-import {Component} from 'react'
+import {Component} from 'react' // eslint-disable-line
 import {connect} from 'react-redux'
 import dashify from 'dashify'
 import moment from 'moment'

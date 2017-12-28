@@ -1,7 +1,7 @@
 const {series, issues} = require('../database.js'),
       {scoreAndFilter} = require('../../lib/score'),
       comicVine = require('../comicvine'),
-      {saveSeries, saveIssues} = require('../database')
+      {saveSeries, saveIssue} = require('../database')
 
 const comicVineKey = process.env.COMICVINE_API_KEY
 
@@ -15,7 +15,7 @@ const getIssues = seriesId => new Promise(resolve => {
     seriesIssuesLastRequested[seriesId] = Date.now()
     fetch('issues', {filter: `volume:${seriesId}`, sort: 'issue_number:asc'}) // note that ComicVine calls a comic series a "series"
       .then(({results}) => {
-        results.map(issue => saveIssues(issue))
+        results.map(issue => saveIssue(issue))
         resolve(results)
       })
   }
@@ -49,7 +49,7 @@ module.exports = {
     issue: (_, {id}) => new Promise(resolve => {
       fetch('issues', {filter: `id:${id}`}) // note that ComicVine calls a comic series a "series"
         .then(({results}) => {
-          results.map(issue => saveIssues(issue))
+          results.map(issue => saveIssue(issue))
           resolve(results[0])
         })
     })
