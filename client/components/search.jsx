@@ -19,15 +19,15 @@ class Search extends Component {
           <input onKeyup={debounce(this.handleInput, 500)} ref={elem => this.input = elem} />
           {loading && ' Loading ...'}
         </p>
-        {series && <div className={style.seriesList}>
+        {series && <div className={style.list}>
           {series.map(s => {
             const {id, name, countOfIssues, startYear, image, publisher} = s.toJS()
             return (
               <div>
-                <Link className={style.series} to={`/series/${id}-${name ? dashify(name) : ''}-${publisher ? dashify(publisher.name) : ''}`}>
+                <Link className={style.item} to={`/series/${id}-${name ? dashify(name) : ''}-${publisher ? dashify(publisher.name) : ''}`}>
                   <img src={image && image.iconUrl} className={style.icon} />
-                  <div className={style.seriesDetails}>
-                    <div className={style.seriesName} title={name}>{name}</div>
+                  <div className={style.itemDetails}>
+                    <div className={style.itemName} title={name}>{name}</div>
                     <div className={style.datePublisher}>{startYear} - {publisher && publisher.name}</div>
                     {countOfIssues} issue{countOfIssues === 1 ? '' : 's'}
                   </div>

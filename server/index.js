@@ -13,10 +13,8 @@ const app = express(),
 const fetch = comicVine.bind(null, comicVineKey)
 
 app.get('/api/*', (req, res) => {
-  fetch('volumes', {filter: 'name:Ekho'}).then(data => { // note that ComicVine calls a comic series a "volume"
-    Promise.all(
-      data.results.map(series => saveSeries(series))
-    ).then(() => res.send(data))
+  fetch('issues', {filter: 'volume:46568'}).then(data => { // note that ComicVine calls a comic series a "volume"
+    res.send(data)
   })
 })
 

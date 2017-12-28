@@ -5,7 +5,7 @@ const client = require('request-json').createClient('https://comicvine.gamespot.
 module.exports = (key, resource, params = {}) => new Promise((resolve, reject) => {
   try {
     const paramsStr = Object.keys(params).map(key => `${key}=${encodeURIComponent(params[key])}`).join('&'),
-          url = `/api/${resource}/?api_key=${key}&format=json&${paramsStr}&sort=date_last_updated:desc`
+          url = `/api/${resource}/?api_key=${key}&format=json&${paramsStr}`
 
     console.log('Fetching ComicVine', url)
 

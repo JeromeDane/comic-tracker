@@ -17,14 +17,24 @@ const typeDefs = `
   type Series {
     id: ID!
     name: String!
-    thumbUrl: String,
+    description: String
     publisher: Publisher
     image: Image
     startYear: Int
     countOfIssues: Int
+    issues: [Issue!]
+  }
+
+  type Issue {
+    id: ID!
+    name: String
+    issueNumber: Int
+    image: Image
+    coverDate: String
   }
 
   type Query {
+    issues(series: Int): [Issue!]!
     series(query: String): [Series!]!
     serie(id: ID!): Series
   }

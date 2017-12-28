@@ -1,34 +1,35 @@
 import createGraphQLClient from 'graphql-client'
 import {fromJS} from 'immutable'
 
-export const SERIES_UPDATE = 'SERIES_UPDATE'
-export const SERIES_HAVE_BEEN_UPDATED = 'SERIES_HAVE_BEEN_UPDATED'
+export const ISSUES_UPDATE = 'ISSUES_UPDATE'
+export const ISSUES_HAVE_BEEN_UPDATED = 'ISSUES_HAVE_BEEN_UPDATED'
 
 const client = createGraphQLClient({url: '/graphql'})
 
-const _handleSeries = (series, dispatch, getState, nextAction) => {
-  series = fromJS(series.map(s => {
+const _handleSeries = (issues, dispatch, getState, nextAction) => {
+  issues = fromJS(issues.map(s => {
     if(s.description) {
       s.description = s.description
         .replace(/<a(.+?)href="\/([^"]+)"/g, '<a$1href="https://comicvine.gamespot.com/$2" target="_blank"')
     }
     return s
   }))
-  dispatch({type: SERIES_UPDATE, series})
-  dispatch({type: SERIES_HAVE_BEEN_UPDATED, series: getState().get('series')})
-  if(typeof nextAction === 'function') dispatch(nextAction(series))
+  dispatch({type: ISSUES_UPDATE, issues})
+  dispatch({type: ISSUES_HAVE_BEEN_UPDATED, issues: getState().get('issues')})
+  if(typeof nextAction === 'function') dispatch(nextAction(issues))
 }
 
 export const fetchSeries = (query, fields, nextAction) =>
   (dispatch, getState) => {
     if(typeof fields !== 'string') throw new Error('"fields" is required as a string')
-    client.query(`{series(query: "${query}") {${fields}}}`)
-      .then(({data: {series}}) => _handleSeries(series, dispatch, getState, nextAction))
+    client.query(`{issues(query: "${query}") {${fields}}}`)
+      .then(({data: {issues}}) => _handleSeries(issues, dispatch, getState, nextAction))
   }
 
 export const fetchSerie = (id, fields, nextAction) =>
   (dispatch, getState) => {
     if(typeof fields !== 'string') throw new Error('"fields" is required as a string')
+    console.log(`{serie(id: ${id}) {${fields}}}`);
     client.query(`{serie(id: ${id}) {${fields}}}`)
       .then(({data: {serie}}) => _handleSeries([serie], dispatch, getState, nextAction))
   }
