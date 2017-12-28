@@ -5,6 +5,7 @@ import dashify from 'dashify'
 import {Link} from 'react-router-dom'
 import {fetchSerie} from '../actions/series'
 import searchStyle from './search.css'
+import Crumbs from './crumbs.jsx'
 
 class Series extends Component {
   render({series}) {
@@ -14,6 +15,10 @@ class Series extends Component {
       .filter(issue => issue.name)
     return name
       ? <section>
+        <Crumbs>
+          <Link to="/search">Search</Link>
+          {name}
+        </Crumbs>
         <h2>{name}</h2>
         <p>{startYear} - {publisher && `${publisher.name} -`} {countOfIssues} issues</p>
         <p dangerouslySetInnerHTML={{__html: description}} />
