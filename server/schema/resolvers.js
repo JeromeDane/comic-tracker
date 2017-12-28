@@ -8,11 +8,11 @@ const comicVineKey = process.env.COMICVINE_API_KEY
 const fetch = comicVine.bind(null, comicVineKey)
 
 const queriesLastRun = {},
-      issuesLastRequested = {}
+      seriesIssuesLastRequested = {}
 
 const getIssues = seriesId => new Promise(resolve => {
-  if(!issuesLastRequested[seriesId] || Date.now() - issuesLastRequested[seriesId] > 60 * 60 * 1000) {
-    // issuesLastRequested[seriesId] = Date.now()
+  if(!seriesIssuesLastRequested[seriesId] || Date.now() - seriesIssuesLastRequested[seriesId] > 60 * 60 * 1000) {
+    seriesIssuesLastRequested[seriesId] = Date.now()
     fetch('issues', {filter: `volume:${seriesId}`, sort: 'issue_number:asc'}) // note that ComicVine calls a comic series a "series"
       .then(({results}) => {
         results.map(issue => saveIssues(issue))
@@ -20,7 +20,7 @@ const getIssues = seriesId => new Promise(resolve => {
       })
   }
   else {
-    issues.find().filter(doc => doc.volume === series)
+    issues.find().filter(doc => doc.volume.id === seriesId)
       .callback((err, data) => resolve(data))
   }
 })
