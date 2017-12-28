@@ -1,7 +1,6 @@
 .seriesList {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
 }
 .seriesList > div {
   max-width: 100%;
