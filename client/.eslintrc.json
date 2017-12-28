@@ -23,6 +23,21 @@
     "react/jsx-tag-spacing": ["error"],
     "react/jsx-wrap-multilines": ["error"],
     "react/jsx-no-duplicate-props": ["error"],
-    "react/jsx-pascal-case": ["error"]
+    "react/jsx-pascal-case": ["error"],
+    "import/no-nodejs-modules": "error",
+    "import/no-unresolved": "error",
+    "import/default": "error",
+    "import/export": "error",
+    "import/newline-after-import": "error",
+    "import/no-amd": "error",
+    "import/no-commonjs": "error",
+    "import/no-deprecated": "error",
+    "import/no-extraneous-dependencies": "error",
+    "import/no-duplicates": "error",
+    "import/no-dynamic-require": "error",
+    "import/no-mutable-exports": "error",
+    "import/no-named-default": "error",
+    "import/no-namespace": "error",
+    "import/order": "error"
   }
 }
