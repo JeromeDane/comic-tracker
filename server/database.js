@@ -1,5 +1,8 @@
 const NoSQL = require('nosql'),
-      path = require('path')
+      path = require('path'),
+      mkdirp = require('mkdirp')
+
+mkdirp(path.join(__dirname, '../data'))
 
 const series = NoSQL.load(path.join(__dirname, '../data/series.nosql')),
       issues = NoSQL.load(path.join(__dirname, '../data/issues.nosql')),
